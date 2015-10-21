@@ -12,16 +12,25 @@
   <script src="app.js"></script>
 </head>
 <body>
-  <div class="container" ng-controller="MovieCtrl">
+  <div class="container" ng-controller="MovieCtrl" >
     <h1>Movie Planner</h1>
-    <h3>{{movie.title}}</h3>
-    <p>{{movie.theater}}</p>
-    <p>{{movie.date}}</p>
-    <p>{{movie.time}}</p>
-    <br>
-    <input type="text" name="title" ng-model="movie.title"/>
-    <input type="text" name="theater" ng-model="movie.theater"/>
-    <input type="text" name="date" ng-model="movie.date"/>
-    <input type="text" name="time" ng-model="movie.time"/>
+    <div ng-repeat="(id, movie) in movies">
+      <h3>{{movie.title}}</h3>
+      <p>{{movie.theater}}</p>
+      <p>{{movie.date}}</p>
+      <p>{{movie.time}}</p>
+      <br>
+      <input type="text" name="title" ng-model="movie.title" ng-blur="updateMovie(id)"/>
+      <input type="text" name="theater" ng-model="movie.theater" ng-blur="updateMovie(id)"/>
+      <input type="text" name="date" ng-model="movie.date" ng-blur="updateMovie(id)"/>
+      <input type="text" name="time" ng-model="movie.time" ng-blur="updateMovie(id)"/>
+    </div>
+    <form ng-submit="addMovie()">
+      <input type="text" ng-model="newMovie.title" placeholder="title"/>
+      <input type="text" ng-model="newMovie.theater" placeholder="theater"/>
+      <input type="text" ng-model="newMovie.date" placeholder="date"/>
+      <input type="text" ng-model="newMovie.time" placeholder="time"/>
+      <button type="submit" >Add</button>
+    </form>
   </div>
 </body>
